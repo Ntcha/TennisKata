@@ -21,10 +21,14 @@ class Test_Score:
 
     def test_score_can_announce(self, score):
         assert(score.announce(0, 0) == 'Love - Love')
-        assert (score.announce(0, 3) == 'Love - Forty')
-        assert (score.announce(1, 3) == 'Fifteen - Forty')
-        assert (score.announce(2, 3) == 'Thirty - Forty')
+        assert(score.announce(0, 3) == 'Love - Forty')
+        assert(score.announce(1, 3) == 'Fifteen - Forty')
+        assert(score.announce(2, 3) == 'Thirty - Forty')
 
     def test_score_can_announce_deuce(self, score):
-        assert (score.announce(2, 2) == 'Thirty - Thirty')
-        assert (score.announce(3, 3) == 'Deuce')
+        assert(score.announce(2, 2) != 'deuce')
+        assert(score.announce(3, 3) == 'Deuce')
+
+    def test_game_over(self, score):
+        assert(not score.is_game_over(0, 0))
+        assert(score.is_game_over(0, 3))
