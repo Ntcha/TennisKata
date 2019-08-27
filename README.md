@@ -24,7 +24,7 @@ For Linux :
 * \# source bin/activate
 * (TennisKata) pip install -r requirements.txt
 * python3 -m flake8 --exclude=Include,Lib,Scripts
-* python3 -m pytest --ignore=Include --ignore=Lib --ignore=Scripts
+* python3 -m pytest --ignore=bin --ignore=include --ignore=lib
 * python3 src/main.py
 
 I don't have a Mac, should be similar to Linux though.
