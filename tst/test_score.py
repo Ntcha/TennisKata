@@ -9,6 +9,14 @@ class Test_Score:
     def score(self):
         return Score()
 
+    @pytest.fixture
+    def player_1(self):
+        return 'Fab'
+
+    @pytest.fixture
+    def player_2(self):
+        return 'Baf'
+
     def test_score_has_score_scale(self, score):
         assert(score.scale)
         assert(len(score.scale) > 0)
@@ -19,15 +27,18 @@ class Test_Score:
         assert (score.scale[2] == 'Thirty')
         assert (score.scale[3] == 'Forty')
 
-    def test_score_can_announce(self, score):
-        assert(score.announce(0, 0) == 'Love - Love')
-        assert(score.announce(0, 3) == 'Love - Forty')
-        assert(score.announce(1, 3) == 'Fifteen - Forty')
-        assert(score.announce(2, 3) == 'Thirty - Forty')
+    def test_score_can_announce(self, score, player_1, player_2):
+        assert(score.announce(player_1, 0, player_2, 0) == 'Love - Love')
+        assert(score.announce(player_1, 0, player_2, 3) == 'Love - Forty')
+        assert(score.announce(player_1, 1, player_2, 3) == 'Fifteen - Forty')
+        assert(score.announce(player_1, 2, player_2, 3) == 'Thirty - Forty')
 
-    def test_score_can_announce_deuce(self, score):
-        assert(score.announce(2, 2) != 'deuce')
-        assert(score.announce(3, 3) == 'Deuce')
+    def test_score_can_announce_deuce(self, score, player_1, player_2):
+        assert(score.announce(player_1, 3, player_2, 3) == 'Deuce')
+        assert (score.announce(player_1, 5, player_2, 5) == 'Deuce')
+
+    def test_score_can_announce_advantage(self, score, player_1, player_2):
+        assert(score.announce(player_1, 4, player_2, 3,) == f'{player_1}, advantage')
 
     def test_game_over(self, score):
         assert(not score.is_game_over(0, 0))
