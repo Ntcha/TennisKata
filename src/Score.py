@@ -31,14 +31,16 @@ class Score:
         return f'{player_1.name} : {self.scale[player_1.score]} -' \
                f' {player_2.name} : {self.scale[player_2.score]}'
 
-    def is_game_over(self, score_1, score_2):
-        highest_score, lowest_score = score_1 > score_2 \
-                                      and (score_1, score_2) \
-                                      or (score_2, score_1)
+    def is_game_over(self, player_1, player_2):
+        self._check_scores(player_1.score, player_2.score)
 
-        if highest_score >= self.min_value_to_win \
-                and highest_score >= lowest_score + self.min_delta_to_win:
-            return True
+        winner, looser = self._order_players_by_score(player_1, player_2)
+
+        if winner.score >= self.min_value_to_win:
+            if looser.score < self.min_value_to_win:
+                return True
+            if winner.score >= (looser.score + self.min_delta_to_win):
+                return True
 
         return False
 
