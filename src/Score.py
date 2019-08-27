@@ -45,5 +45,8 @@ class Score:
         return False
 
     def announce_winner(self, player_1, player_2):
-        if not self.is_game_over(player_1.score, player_2.score):
+        if not self.is_game_over(player_1, player_2):
             raise ValueError("Game is not over yet, continue to play !")
+
+        winner, looser = self._order_players_by_score(player_1, player_2)
+        return f'{winner.name} is the winner'
