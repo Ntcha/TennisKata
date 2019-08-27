@@ -32,3 +32,9 @@ class Test_Score:
     def test_game_over(self, score):
         assert(not score.is_game_over(0, 0))
         assert(score.is_game_over(0, 3))
+
+    def test_game_over_deuce(self, score):
+        assert (not score.is_game_over(3, 3))
+        assert (not score.is_game_over(4, 3))
+        assert (not score.is_game_over(4, 4))
+        assert (score.is_game_over(4, 6))

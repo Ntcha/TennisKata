@@ -12,9 +12,9 @@ class Score:
         return f'{self.scale[score_1]} - {self.scale[score_2]}'
 
     def is_game_over(self,score_1, score_2):
-        highest_score = score_1 > score_2 and score_1 or score_2
+        highest_score, lowest_score = score_1 > score_2 and (score_1, score_2) or (score_2, score_1)
 
-        if highest_score == 3:
+        if highest_score >= 3 and highest_score >= lowest_score + 2:
             return True
 
         return False
