@@ -12,13 +12,16 @@ For Windows :
 * \# cd TennisKata
 * \# python3 -m venv .
 * \# Scripts\activate
-* TennisKata) pip install requirements.txt
+* (TennisKata) pip install -r requirements.txt
 
 For Linux : 
 * \# git clone git@github.com:Ntcha/TennisKata.git
 * \# cd TennisKata
 * \# python3 -m venv .
-* \# source
-* (TennisKata) pip install requirements.txt
+* \# source bin/activate
+* (TennisKata) pip install -r requirements.txt
 
 I don't have a Mac, should be similar to Linux though.
+
+Once in the virtual env:
+* (TennisKata) pip install -r requirements.txt
