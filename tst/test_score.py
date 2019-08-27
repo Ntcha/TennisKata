@@ -18,3 +18,9 @@ class Test_Score:
         assert (score.scale[1] == 'Fifteen')
         assert (score.scale[2] == 'Thirty')
         assert (score.scale[3] == 'Forty')
+
+    def test_score_can_announce(self, score):
+        assert(score.announce(0, 0) == 'Love - Love')
+        assert (score.announce(0, 3) == 'Love - Forty')
+        assert (score.announce(1, 3) == 'Fifteen - Forty')
+        assert (score.announce(2, 3) == 'Thirty - Forty')
