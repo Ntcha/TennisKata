@@ -1,6 +1,4 @@
-from collections import namedtuple
-
-Player = namedtuple('Player', ['name', 'score'])
+from src.Player import Player
 
 
 class Game:
@@ -12,5 +10,14 @@ class Game:
         self.score_manager = score_manager
 
     def is_over(self):
-        return self.score_manager.is_game_over(self.players[0], self.players[1])
+        return self.score_manager.is_game_over(self.players[0],
+                                               self.players[1])
 
+    def player_marks(self, player_number):
+        self.players[player_number - 1].score += 1
+        if self.is_over():
+            print(self.score_manager.announce_winner(self.players[0],
+                                                     self.players[1]))
+        else:
+            print(self.score_manager.announce(self.players[0],
+                                              self.players[1]))

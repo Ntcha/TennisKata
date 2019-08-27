@@ -36,7 +36,7 @@ class ScoreManager:
 
         winner, looser = self._order_players_by_score(player_1, player_2)
 
-        if winner.score >= self.min_value_to_win:
+        if winner.score > self.min_value_to_win:
             if looser.score < self.min_value_to_win:
                 return True
             if winner.score >= (looser.score + self.min_delta_to_win):
