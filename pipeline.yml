@@ -1,0 +1,29 @@
+---
+resources:
+- name: TennisKata
+  type: git
+  source:
+    uri: https://github.com/Ntcha/TennisKata
+    branch: master
+- name: pytest-image
+  type: docker-image
+  source: 
+    : https://github.com/docker-library/python/
+    branch: master
+
+jobs:
+- name: Build Tennis Kata
+  public: true
+  plan:
+    - get: TennisKata
+      trigger: true
+    - get: pytest-image
+    - task: Install pytest
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source: { repository: busybox}
+        run:
+          path: docker
+          args: ["build", "python/3.7"]
